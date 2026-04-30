@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimal E-Commerce</title>
+    <title>MinimalShop - Premium E-Commerce</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -15,8 +16,9 @@
         <div class="nav-container">
             <div class="logo" onclick="showHome()">MinimalShop</div>
             <div class="nav-links">
-                <a href="#" onclick="showHome()">Home</a>
-                <div class="cart-icon" onclick="showCart()">
+                <a href="#" class="active" onclick="showHome()">Home</a>
+                <a href="cart.html">Cart</a>
+                <div class="cart-icon" onclick="window.location.href='cart.html'">
                     <span class="cart-count" id="cart-count">0</span>
                     🛒
                 </div>
@@ -30,7 +32,7 @@
         <div class="hero">
             <div class="hero-content">
                 <h1>Welcome to MinimalShop</h1>
-                <p>Discover amazing products at great prices</p>
+                <p>Discover premium products with exceptional quality and style</p>
                 <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
             </div>
         </div>
@@ -40,12 +42,18 @@
             <div class="container">
                 <h2>Our Products</h2>
                 <div class="filters">
-                    <input type="text" id="search-input" placeholder="Search products..." onkeyup="filterProducts()">
-                    <select id="category-filter" onchange="filterProducts()">
+                    <input type="text" id="search-input" placeholder="Search products..." onkeyup="UI.filterProducts()">
+                    <select id="category-filter" onchange="UI.filterByCategory(this.value)">
                         <option value="">All Categories</option>
                     </select>
+                    <select id="sort-select" onchange="UI.sortProducts(this.value)">
+                        <option value="">Sort by</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
                 </div>
-                <div class="loading" id="loading">Loading products...</div>
+                <div class="loading" id="loading">Loading amazing products...</div>
                 <div class="products-grid" id="products-grid"></div>
             </div>
         </div>
@@ -53,29 +61,54 @@
 
     <!-- Product Details Page -->
     <section id="product-details" class="section">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="container">
+                <div id="breadcrumb">Home > Products</div>
+            </div>
+        </div>
+
         <div class="container">
             <button class="back-btn" onclick="showHome()">← Back to Products</button>
             <div class="product-detail" id="product-detail"></div>
         </div>
     </section>
 
-    <!-- Cart Page -->
-    <section id="cart" class="section">
-        <div class="container">
-            <h2>Your Cart</h2>
-            <div class="cart-items" id="cart-items"></div>
-            <div class="cart-total" id="cart-total"></div>
-            <button class="btn-primary" onclick="checkout()">Proceed to Checkout</button>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 MinimalShop. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MinimalShop</h3>
+                    <p>Your premium destination for quality products.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" onclick="showHome()">Home</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#" onclick="UI.filterByCategory('beauty')">Beauty</a></li>
+                        <li><a href="#" onclick="UI.filterByCategory('fragrances')">Fragrances</a></li>
+                        <li><a href="#" onclick="UI.filterByCategory('furniture')">Furniture</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinimalShop. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/ui.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

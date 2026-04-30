@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal E-Commerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="showHome()">MinimalShop</div>
+            <div class="nav-links">
+                <a href="#" onclick="showHome()">Home</a>
+                <div class="cart-icon" onclick="showCart()">
+                    <span class="cart-count" id="cart-count">0</span>
+                    🛒
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="section active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Welcome to MinimalShop</h1>
+                <p>Discover amazing products at great prices</p>
+                <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="products-section">
+            <div class="container">
+                <h2>Our Products</h2>
+                <div class="filters">
+                    <input type="text" id="search-input" placeholder="Search products..." onkeyup="filterProducts()">
+                    <select id="category-filter" onchange="filterProducts()">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div class="loading" id="loading">Loading products...</div>
+                <div class="products-grid" id="products-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Page -->
+    <section id="product-details" class="section">
+        <div class="container">
+            <button class="back-btn" onclick="showHome()">← Back to Products</button>
+            <div class="product-detail" id="product-detail"></div>
+        </div>
+    </section>
+
+    <!-- Cart Page -->
+    <section id="cart" class="section">
+        <div class="container">
+            <h2>Your Cart</h2>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-total" id="cart-total"></div>
+            <button class="btn-primary" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 MinimalShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
